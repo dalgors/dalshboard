@@ -216,7 +216,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 775,
 		"when": "2021-07-15 13:47"
 	},
@@ -229,7 +229,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 739,
 		"when": "2021-07-15 13:41"
 	},
@@ -242,7 +242,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 792,
 		"when": "2021-07-15 13:32"
 	},
@@ -255,7 +255,7 @@
 		"resultMessage": "런타임 에러",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 793,
 		"when": "2021-07-15 13:31"
 	},
@@ -268,7 +268,7 @@
 		"resultMessage": "컴파일 에러",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 798,
 		"when": "2021-07-15 13:29"
 	},
@@ -333,7 +333,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 23048,
 		"time": 52,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 951,
 		"when": "2021-07-13 14:02"
 	},
@@ -346,7 +346,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 15168,
 		"time": 12,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2244,
 		"when": "2021-07-13 13:43"
 	},
@@ -359,7 +359,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 22108,
 		"time": 76,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1748,
 		"when": "2021-07-13 13:12"
 	},
@@ -788,7 +788,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 86108,
 		"time": 832,
-		"language": "C# 9.0 (.NET) / 수정",
+		"language": "C# 9.0 (.NET)",
 		"length": 1736,
 		"when": "2021-07-09 21:20"
 	},
@@ -801,7 +801,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "C# 9.0 (.NET) / 수정",
+		"language": "C# 9.0 (.NET)",
 		"length": 1723,
 		"when": "2021-07-09 21:17"
 	},
@@ -1009,7 +1009,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13116,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2802,
 		"when": "2021-07-09 13:36"
 	},
@@ -1022,7 +1022,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2802,
 		"when": "2021-07-09 13:34"
 	},
@@ -1087,7 +1087,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 65424,
 		"time": 200,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1379,
 		"when": "2021-07-07 18:18"
 	},
@@ -1100,7 +1100,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1351,
 		"when": "2021-07-07 18:15"
 	},
@@ -1113,7 +1113,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13116,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1227,
 		"when": "2021-07-07 18:07"
 	},
@@ -1126,7 +1126,7 @@
 		"resultMessage": "런타임 에러",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1179,
 		"when": "2021-07-07 18:04"
 	},
@@ -1139,7 +1139,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 24212,
 		"time": 144,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1329,
 		"when": "2021-07-07 17:46"
 	},
@@ -1152,7 +1152,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 918,
 		"when": "2021-07-07 17:30"
 	},
@@ -1165,7 +1165,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13116,
 		"time": 0,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1054,
 		"when": "2021-07-07 17:24"
 	},
@@ -1178,7 +1178,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1040,
 		"when": "2021-07-07 17:14"
 	},
@@ -1191,7 +1191,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1045,
 		"when": "2021-07-07 17:10"
 	},
@@ -1204,7 +1204,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 4528,
 		"time": 0,
-		"language": "Text / 수정",
+		"language": "Text",
 		"length": 339,
 		"when": "2021-07-07 17:09"
 	},
@@ -1659,7 +1659,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1130,
 		"when": "2021-07-03 20:18"
 	},
@@ -1672,7 +1672,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13248,
 		"time": 64,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1942,
 		"when": "2021-07-03 20:08"
 	},
@@ -1685,7 +1685,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13248,
 		"time": 56,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2003,
 		"when": "2021-07-03 20:07"
 	},
@@ -1711,7 +1711,7 @@
 		"resultMessage": "시간 초과",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1966,
 		"when": "2021-07-03 19:57"
 	},
@@ -1724,7 +1724,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1989,
 		"when": "2021-07-03 19:52"
 	},
@@ -1750,7 +1750,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2519,
 		"when": "2021-07-03 19:43"
 	},
@@ -1763,7 +1763,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2176,
 		"when": "2021-07-03 19:20"
 	},
@@ -1815,7 +1815,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 18696,
 		"time": 8,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1586,
 		"when": "2021-07-03 18:50"
 	},
@@ -1841,7 +1841,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13520,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2117,
 		"when": "2021-07-03 18:30"
 	},
@@ -1854,7 +1854,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13108,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1139,
 		"when": "2021-07-03 18:04"
 	},
@@ -2309,7 +2309,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13120,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1411,
 		"when": "2021-06-30 20:49"
 	},
@@ -2322,7 +2322,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 650,
 		"when": "2021-06-30 20:35"
 	},
@@ -2335,7 +2335,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 29200,
 		"time": 68,
-		"language": "Python 3 / 수정",
+		"language": "Python 3",
 		"length": 165,
 		"when": "2021-06-30 20:26"
 	},
@@ -2348,7 +2348,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 15124,
 		"time": 8,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 705,
 		"when": "2021-06-30 20:04"
 	},
@@ -2829,7 +2829,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13120,
 		"time": 76,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2885,
 		"when": "2021-06-26 23:03"
 	},
@@ -3154,7 +3154,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13120,
 		"time": 144,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2260,
 		"when": "2021-06-26 0:50"
 	},
@@ -3167,7 +3167,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 2699,
 		"when": "2021-06-26 0:38"
 	},
@@ -3258,7 +3258,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 899,
 		"when": "2021-06-25 23:09"
 	},
@@ -3271,7 +3271,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 16344,
 		"time": 40,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 881,
 		"when": "2021-06-25 23:07"
 	},
@@ -3284,7 +3284,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 128,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 803,
 		"when": "2021-06-25 23:02"
 	},
@@ -3297,7 +3297,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 14928,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 885,
 		"when": "2021-06-25 22:57"
 	},
@@ -3310,7 +3310,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 839,
 		"when": "2021-06-25 22:52"
 	},
@@ -3323,7 +3323,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 838,
 		"when": "2021-06-25 22:50"
 	},
@@ -3336,7 +3336,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 13112,
 		"time": 4,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 886,
 		"when": "2021-06-25 22:46"
 	},
@@ -3349,7 +3349,7 @@
 		"resultMessage": "맞았습니다!!",
 		"memory": 15556,
 		"time": 8,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1320,
 		"when": "2021-06-25 22:31"
 	},
@@ -3362,7 +3362,7 @@
 		"resultMessage": "틀렸습니다",
 		"memory": null,
 		"time": null,
-		"language": "Rust 2018 / 수정",
+		"language": "Rust 2018",
 		"length": 1313,
 		"when": "2021-06-25 22:24"
 	},
