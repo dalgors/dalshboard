@@ -38,8 +38,8 @@ jobs:
     - name: Commits
       
       run: |
-        git config --local user.email "dalgors.deu[bot]@gmail.com"
-        git config --local user.name "dalgors[bot]"
+        git config --local user.email "dalgors.deu@gmail.com"
+        git config --local user.name "dalgors"
         git add submissions.json
         if [ -z "$(git status --porcelain)" ]; then echo "Nothing changed"; else git commit -m "[Bot] Update submissions"; fi
     - name: Push
