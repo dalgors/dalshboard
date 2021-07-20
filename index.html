@@ -77,10 +77,16 @@
 											<a :href="`https://www.acmicpc.net/user/${username}`" target="_blank">{{ username }}</a>
 										</td>
 										<td
-											v-for="problem in competition.problems.map(problemId => userdata[problemId])"
+											v-for="([problemId, problem]) in competition.problems.map(problemId => ([problemId, userdata[problemId]]))"
 											:class="{ 'table-success': problem?.solved === true, 'table-danger': problem?.solved === false }"
 										>
-											<template v-if="problem">{{ problem.trial }}</template>
+											<template v-if="problem"
+												><a
+													:href="`https://www.acmicpc.net/status?problem_id=${problemId}&user_id=${username}&language_id=-1&result_id=-1&from_problem=1`"
+													target="_blank"
+													>{{ problem.trial }}</a
+												></template
+											>
 										</td>
 										<td>{{ solvedCount }}</td>
 									</tr>
