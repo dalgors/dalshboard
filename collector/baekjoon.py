@@ -7,6 +7,7 @@ class CookieExpired(Exception):
 
 def ensureLogin(groupId,session):
     if "가입 신청" in session.get(f"https://www.acmicpc.net/group/{groupId}").text:
+        print('로그인이 되어있지 않습니다. 쿠키 정보를 확인해주세요.')
         raise CookieExpired
 
 
