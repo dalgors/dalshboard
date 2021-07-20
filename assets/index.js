@@ -37,7 +37,7 @@ const app = new Vue({
 		async load() {
 			// load all json files
 			[this.competitions, this.submissions] = await Promise.all(
-				["competitions.json", "collector/submissions.json"].map(async filename => await (await fetch(filename)).json())
+				["competitions.json", "submissions.json"].map(async filename => await (await fetch(filename)).json())
 			);
 
 			// manipulate incomplete fields in json data
