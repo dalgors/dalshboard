@@ -10,6 +10,8 @@ def ensureLogin(groupId,session):
         print('로그인이 되어있지 않습니다. 쿠키 정보를 확인해주세요.')
         raise CookieExpired
 
+    print('[Collector] Succesfully checked login state')
+
 
 def tagToDict(submissionTag):
     tagStr = str(submissionTag)
@@ -49,11 +51,17 @@ def fetchSubmissions(groupId,session,top = None):
     return submissions
 
 def fetchSubmissionsUntil(groupId,session,submissionId):
-    submissions = fetchSubmissions(groupId,session) 
-    partOfSubmissions = submissions 
+    submissions = []
+    top = None
+    page = 1
+    print(f'[Collector] Fetch until submissionId={submissionId}')
     while True:
-        for i,submission in enumerate(partOfSubmissions):
-            if submission['id'] == submissionId:
-                return submissions + partOfSubmissions[:i]    
-        partOfSubmissions = fetchSubmissions(groupId,session,submissions[-1]['id'])
-        submissions += partOfSubmissions
+        print(f'[Collector] Try to fetch page={page}, top={top}')
+        for submission in fetchSubmissions(groupId,session,top):
+            if submission['id'] <= submissionId:
+                return submissions
+            
+            submissions.append(submission)
+        
+        top = submissions[-1]['id']
+        page += 1
