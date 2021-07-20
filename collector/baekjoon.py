@@ -4,12 +4,13 @@ import re
 class CookieExpired(Exception):
     pass
 
+
 def ensureLogin(groupId,session):
     if "가입 신청" in session.get(f"https://www.acmicpc.net/group/{groupId}").text:
         raise CookieExpired
 
-def tagToDict(submissionTag):
 
+def tagToDict(submissionTag):
     tagStr = str(submissionTag)
     submissionDict = {}
     submissionDict["id"] = int(re.findall("solution-[0-9]+",tagStr)[0].split("-")[1])

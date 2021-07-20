@@ -1,5 +1,5 @@
 import requests,os,json
-from baekjoon_crawler import *
+from baekjoon import *
 
 groupId = os.getenv("GROUP_ID")
 cookie = { 
