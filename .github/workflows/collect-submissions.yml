@@ -4,10 +4,8 @@
 name: Collect Submissions
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron:  '*/20 * * * *'
 
 jobs:
   build:
