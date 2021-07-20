@@ -3,20 +3,23 @@
 	--main-card-color: hsl(200, 95%, 7%);
 	--main-success-color: hsl(120, 60%, 30%);
 	--main-danger-color: hsl(0, 60%, 30%);
+	--main-body-text-color: hsl(215, 5%, 65%);
+	--main-button-color: hsl(200, 75%, 10%);
 }
 
 body {
 	font-family: "Roboto", sans-serif;
 	background-color: var(--main-bg-color);
+	color: var(--main-body-text-color);
 }
 
 a {
-	color: unset;
+	color: white;
 	text-decoration: none;
 }
 
 a:hover {
-	color: unset;
+	color: white;
 	text-decoration: underline;
 }
 
@@ -30,6 +33,11 @@ a:hover {
 }
 
 .table {
+	color: var(--main-body-text-color);
+	font-weight: 300;
+}
+
+.table > thead {
 	color: white;
 }
 
@@ -55,4 +63,13 @@ a:hover {
 
 .table-danger {
 	background-color: var(--main-danger-color) !important;
+}
+
+.btn {
+	border-radius: 1rem;
+}
+
+.btn-primary {
+	background-color: var(--main-button-color);
+	border: none;
 }

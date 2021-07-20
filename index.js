@@ -12,13 +12,6 @@ Date.prototype.toString = function () {
 	].join(" ");
 };
 
-window.onload = () => {
-	// Bootstrap v5.0 tooltip 활성화 코드
-	document
-		.querySelectorAll('[data-bs-toggle="tooltip"]')
-		.forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-};
-
 // Vue 앱 생성
 // Vue.js: Getting Started: https://kr.vuejs.org/v2/guide/index.html
 const app = new Vue({
@@ -56,12 +49,8 @@ const app = new Vue({
 				competition.duration.end = new Date(competition.duration.end);
 			});
 
-			// 최상단에 띄울 연습 선정 (배열에서 가장 가까이 있으면서 진행중인 연습)
-			this.competition = this.competitions[0];
-			this.competitionDescription = this.describeSubmissions(
-				this.getSubmissionsDuring(this.competition.duration),
-				this.competition.problems
-			);
+			// 최상단에 띄울 연습 선정 (배열에서 가장 가까이 있는 연습)
+			this.displayCompetition(this.competitions[0]);
 
 			// loaded를 true로 설정하여 화면에 데이터 뿌리기
 			this.loaded = true;
@@ -110,6 +99,15 @@ const app = new Vue({
 			)
 				.map(([, userdata]) => userdata)
 				.sort((a, b) => b.solvedCount - a.solvedCount);
+		},
+
+		// 주어진 연습을 최상단에 띄움
+		displayCompetition(competition) {
+			this.competition = competition;
+			this.competitionDescription = this.describeSubmissions(
+				this.getSubmissionsDuring(this.competition.duration),
+				this.competition.problems
+			);
 		},
 
 		// 주어진 기간에 해당되는 제출 반환
