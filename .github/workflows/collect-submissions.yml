@@ -36,11 +36,12 @@ jobs:
       run: |
         python collector/main.py
     - name: Commits
+      
       run: |
-        git config --local user.email "dalgors.deu@gmail.com"
-        git config --local user.name "dalgors" # 커밋에 포함될 이름
+        git config --local user.email "dalgors.deu[bot]@gmail.com"
+        git config --local user.name "dalgors[bot]"
         git add submissions.json
-        git commit -m "[Bot] Update submissions" # 커밋 메세지
+        if [ -z "$(git status --porcelain)" ]; then echo "Nothing changed"; else git commit -m "[Bot] Update submissions"; fi
     - name: Push
       uses: ad-m/github-push-action@master
       with:
