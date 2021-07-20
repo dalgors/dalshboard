@@ -1,0 +1,58 @@
+:root {
+	--main-bg-color: hsl(200, 75%, 10%);
+	--main-card-color: hsl(200, 95%, 7%);
+	--main-success-color: hsl(120, 60%, 30%);
+	--main-danger-color: hsl(0, 60%, 30%);
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: var(--main-bg-color);
+}
+
+a {
+	color: unset;
+	text-decoration: none;
+}
+
+a:hover {
+	color: unset;
+	text-decoration: underline;
+}
+
+.card {
+	background-color: var(--main-card-color);
+	border-radius: 0;
+}
+
+.card-body {
+	padding: 1.5rem;
+}
+
+.table {
+	color: white;
+}
+
+.table-nonfluid {
+	width: auto !important;
+}
+
+.table-tiled {
+	border-collapse: separate;
+	border-spacing: 0.2rem;
+}
+.table-tiled > thead > tr > th {
+	background-color: var(--main-bg-color);
+}
+.table-tiled > tbody > tr > td {
+	background-color: var(--main-bg-color);
+	color: white;
+}
+
+.table-success {
+	background-color: var(--main-success-color) !important;
+}
+
+.table-danger {
+	background-color: var(--main-danger-color) !important;
+}
