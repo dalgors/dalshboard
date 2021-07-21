@@ -1,5 +1,18 @@
 [
 	{
+		"id": 31302958,
+		"username": "20183051",
+		"problemId": 6679,
+		"problemName": "싱기한 네자리 숫자",
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 125420,
+		"time": 128,
+		"language": "PyPy3",
+		"length": "337",
+		"when": "2021-07-22 00:29"
+	},
+	{
 		"id": 31290650,
 		"username": "20203218",
 		"problemId": 1427,
