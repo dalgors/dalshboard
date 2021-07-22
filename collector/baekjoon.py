@@ -55,7 +55,9 @@ def fetchSubmissionsUntil(groupId,session,submissionId):
     top = None
     page = 1
     print(f'[Collector] Fetch until submissionId={submissionId}')
-    while True:
+
+    # Set pagination limit = 5
+    while page <= 5:
         print(f'[Collector] Try to fetch page={page}, top={top}')
         for submission in fetchSubmissions(groupId,session,top):
             if submission['id'] <= submissionId:
