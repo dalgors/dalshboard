@@ -1,5 +1,18 @@
 [
 	{
+		"id": 31372137,
+		"username": "solo5star",
+		"problemId": 9663,
+		"problemName": "N-Queen",
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 13112,
+		"time": 3696,
+		"language": "Rust 2018",
+		"length": "1795",
+		"when": "2021-07-23 20:06"
+	},
+	{
 		"id": 31368306,
 		"username": "asd0236",
 		"problemId": 1753,
