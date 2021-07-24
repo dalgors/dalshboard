@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31418252,
+		"username": "solo5star",
+		"problemId": 1240,
+		"problemName": "노드사이의 거리",
+		"tier": 12,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 13248,
+		"time": 12,
+		"language": "Rust 2018",
+		"length": 1790,
+		"when": "2021-07-25 04:18:48"
+	},
+	{
 		"id": 31417893,
 		"username": "solo5star",
 		"problemId": 2557,
