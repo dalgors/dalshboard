@@ -24,6 +24,13 @@ def parseSubmissionFromTableRowElement(submissionTag):
         'problemName': re.search('title="(.+?)"', tagStr)[1], # '?' at '.+?' means non-greedy (https://stackoverflow.com/questions/766372/python-non-greedy-regexes)
     }
 
+    # 티어 정보를 사용할 수 있다면 티어 정보도 추가
+    # 1=Bronze V, 2=Bronze IV, 3=Bronze III, 4=Bronze II, 5=Bronze I
+    # 6=Silver V, 7=Silver IV ...
+    tier = re.search('/tier/(\d+)\.svg', tagStr)
+    if tier is not None:
+        submission['tier'] = int(tier[1])
+
     # 결과 정보 파싱 및 저장
     resultTag =  submissionTag.contents[3].contents[0].contents[0]
     if 'class' not in resultTag.attrs:
