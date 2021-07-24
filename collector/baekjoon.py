@@ -13,7 +13,7 @@ def ensureLogin(groupId,session):
     print('[Collector] Succesfully checked login state')
 
 
-def tagToDict(submissionTag):
+def parseSubmissionFromTableRowElement(submissionTag):
     tagStr = str(submissionTag)
 
     # 제출 번호, 유저 이름, 문제 번호, 문제 이름
@@ -30,7 +30,7 @@ def tagToDict(submissionTag):
         resultTag = resultTag.contents[0]
 
     submission.update({
-        'resultCode': resultTag.attrs['class'][0].split("-")[1].upper(),
+        'resultCode': '-'.join(resultTag.attrs['class'][0].split("-")[1:]).upper(),
         'resultMessage': " ".join(resultTag.contents[0].split(u'\xa0'))
     })
 
@@ -47,7 +47,7 @@ def tagToDict(submissionTag):
 
     return submission
 
-def fetchSubmissions(groupId,session,top = None): 
+def fetchSubmissions(groupId, session, top = None): 
     url = f"https://www.acmicpc.net/status?group_id={groupId}"  
     if top != None:
         url += f"&top={top}"
@@ -55,10 +55,20 @@ def fetchSubmissions(groupId,session,top = None):
     html = session.get(url)
     soup = bs(html.text, 'html.parser')
     submissionsTags = soup.find("tbody").find_all("tr")
-    submissions = [tagToDict(i) for i in submissionsTags]
+
+    # 채점 중, 채점 준비중 등 채점이 완료되지 않은 채점 발견 시 다음 번에 크롤링하도록 함
+    # (이번 크롤링에서는 제외)
+    # 가장 아래의 제출부터 체크하고, 채점이 완료되지 않은 제출 발견 시 바로 break
+    submissions = []
+    for submission in reversed([*map(parseSubmissionFromTableRowElement, submissionsTags)]):
+        if submission['resultCode'] in ['WAIT', 'REJUDGE-WAIT', 'COMPILE', 'JUDGING']:
+            break
+
+        submissions.insert(0, submission)
+
     return submissions
 
-def fetchSubmissionsUntil(groupId,session,submissionId):
+def fetchSubmissionsUntil(groupId, session, submissionId):
     submissions = []
     top = None
     page = 1
