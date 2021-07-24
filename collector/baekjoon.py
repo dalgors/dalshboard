@@ -15,29 +15,37 @@ def ensureLogin(groupId,session):
 
 def tagToDict(submissionTag):
     tagStr = str(submissionTag)
-    submissionDict = {}
-    submissionDict["id"] = int(re.findall("solution-[0-9]+",tagStr)[0].split("-")[1])
-    submissionDict["username"] = re.findall("user/\w+",tagStr)[0].split("/")[1]
-    submissionDict["problemId"] = int(re.findall("problem/[0-9]+",tagStr)[0].split("/")[1])
-    submissionDict["problemName"] = re.findall('title=".+"',tagStr)[0].split("=")[1].split('"')[1]
+
+    # 제출 번호, 유저 이름, 문제 번호, 문제 이름
+    submission = {
+        'id': int(re.findall("solution-[0-9]+", tagStr)[0].split("-")[1]),
+        'username': re.findall("user/\w+", tagStr)[0].split("/")[1],
+        'problemId': int(re.findall("problem/[0-9]+", tagStr)[0].split("/")[1]),
+        'problemName': re.findall('title=".+"', tagStr)[0].split("=")[1].split('"')[1],
+    }
+
+    # 결과 정보 파싱 및 저장
     resultTag =  submissionTag.contents[3].contents[0].contents[0]
     if 'class' not in resultTag.attrs:
         resultTag = resultTag.contents[0]
-    submissionDict["resultCode"] = resultTag.attrs['class'][0].split("-")[1].upper()  
-    submissionDict["resultMessage"] = " ".join(resultTag.contents[0].split(u'\xa0'))
-    
-    if submissionDict["resultCode"] != "AC":
-        submissionDict["memory"] = None
-        submissionDict["time"] = None 
-        submissionDict["language"] = submissionTag.contents[6].text
-    else:
-        submissionDict["memory"] = int(submissionTag.contents[4].text)
-        submissionDict["time"] = int(submissionTag.contents[5].text)
-        submissionDict["language"] = submissionTag.contents[6].text
-    submissionDict["length"] = submissionTag.contents[7].text
-    submissionDict["when"] = submissionTag.contents[8].contents[0].attrs['title'][:-3]
 
-    return submissionDict
+    submission.update({
+        'resultCode': resultTag.attrs['class'][0].split("-")[1].upper(),
+        'resultMessage': " ".join(resultTag.contents[0].split(u'\xa0'))
+    })
+
+    # 메모리, 시간, 언어, 코드 길이 정보
+    memory, time, language, length = map(lambda el: el.text, submissionTag.contents[4:8])
+
+    submission.update({
+        'memory': int(memory) if memory else None,
+        'time': int(time) if time else None,
+        'language': language,
+        'length': int(length),
+        'when': submissionTag.contents[8].contents[0].attrs['title']
+    })
+
+    return submission
 
 def fetchSubmissions(groupId,session,top = None): 
     url = f"https://www.acmicpc.net/status?group_id={groupId}"  
