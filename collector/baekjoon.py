@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup as bs
-import re
+import re, time
 
 class CookieExpired(Exception):
     pass
@@ -75,20 +75,26 @@ def fetchSubmissions(groupId, session, top = None):
 
     return submissions
 
-def fetchSubmissionsUntil(groupId, session, submissionId):
+def fetchSubmissionsUntil(groupId, session, submissionId, pagenationLimit = 5, throttlePerRequestAsMilliseconds = None):
     submissions = []
     top = None
     page = 1
     print(f'[Collector] Fetch until submissionId={submissionId}')
 
-    # Set pagination limit = 5
-    while page <= 5:
+    # Set pagination limit (unlimited if None)
+    while pagenationLimit is None or page <= pagenationLimit:
         print(f'[Collector] Try to fetch page={page}, top={top}')
         for submission in fetchSubmissions(groupId,session,top):
             if submission['id'] <= submissionId:
                 return submissions
             
             submissions.append(submission)
+
+        # throttle request if enabled
+        if throttlePerRequestAsMilliseconds is not None:
+            print(f'[Collector] Throttle {throttlePerRequestAsMilliseconds} ms ...')
+            time.sleep(throttlePerRequestAsMilliseconds / 1000)
         
-        top = submissions[-1]['id']
+        # do not include 'top' submission
+        top = submissions[-1]['id'] - 1
         page += 1
