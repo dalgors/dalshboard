@@ -18,10 +18,10 @@ def tagToDict(submissionTag):
 
     # 제출 번호, 유저 이름, 문제 번호, 문제 이름
     submission = {
-        'id': int(re.findall("solution-[0-9]+", tagStr)[0].split("-")[1]),
-        'username': re.findall("user/\w+", tagStr)[0].split("/")[1],
-        'problemId': int(re.findall("problem/[0-9]+", tagStr)[0].split("/")[1]),
-        'problemName': re.findall('title=".+"', tagStr)[0].split("=")[1].split('"')[1],
+        'id': int(re.search("solution-(\d+)", tagStr)[1]),
+        'username': re.search("/user/(\w+)", tagStr)[1],
+        'problemId': int(re.search("/problem/(\d+)", tagStr)[1]),
+        'problemName': re.search('title="(.+?)"', tagStr)[1], # '?' at '.+?' means non-greedy (https://stackoverflow.com/questions/766372/python-non-greedy-regexes)
     }
 
     # 결과 정보 파싱 및 저장
