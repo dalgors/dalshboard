@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31456575,
+		"username": "20183026",
+		"problemId": 6679,
+		"problemName": "싱기한 네자리 숫자",
+		"tier": 4,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 2020,
+		"time": 4,
+		"language": "C++17",
+		"length": 569,
+		"when": "2021-07-26 11:59:55"
+	},
+	{
 		"id": 31456064,
 		"username": "20183026",
 		"problemId": 1000,
