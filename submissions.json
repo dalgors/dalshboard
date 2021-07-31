@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31668946,
+		"username": "thdwoqor",
+		"problemId": 1966,
+		"problemName": "프린터 큐",
+		"tier": 8,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 6284,
+		"time": 112,
+		"language": "C# 9.0 (.NET)",
+		"length": 2140,
+		"when": "2021-07-31 17:28:48"
+	},
+	{
 		"id": 31664691,
 		"username": "thdwoqor",
 		"problemId": 11727,
