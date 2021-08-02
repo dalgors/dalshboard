@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31760837,
+		"username": "solo5star",
+		"problemId": 17090,
+		"problemName": "미로 탈출하기",
+		"tier": 14,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 39064,
+		"time": 64,
+		"language": "Rust 2018",
+		"length": 2407,
+		"when": "2021-08-03 02:57:09"
+	},
+	{
 		"id": 31760533,
 		"username": "solo5star",
 		"problemId": 2064,
