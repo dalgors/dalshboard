@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31762046,
+		"username": "solo5star",
+		"problemId": 2468,
+		"problemName": "안전 영역",
+		"tier": 10,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 13120,
+		"time": 24,
+		"language": "Rust 2018",
+		"length": 1812,
+		"when": "2021-08-03 05:31:18"
+	},
+	{
 		"id": 31761996,
 		"username": "solo5star",
 		"problemId": 17836,
