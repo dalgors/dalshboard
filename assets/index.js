@@ -50,7 +50,7 @@ const app = new Vue({
 			});
 
 			// 최상단에 띄울 연습 선정 (배열에서 가장 가까이 있는 연습)
-			this.displayCompetition(this.competitions[0]);
+			this.displayCompetition(this.competitions[this.competitions.length - 1]);
 
 			// loaded를 true로 설정하여 화면에 데이터 뿌리기
 			this.loaded = true;

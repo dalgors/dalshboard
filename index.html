@@ -45,10 +45,10 @@
 					<div style="margin-top: 2rem"></div>
 
 					<template v-if="loaded">
-						<div class="d-flex justify-content-center flex-row-reverse">
+						<div class="d-flex justify-content-center">
 							<button
 								class="btn btn-primary mx-1"
-								v-for="comp in competitions"
+								v-for="comp in competitions.slice(competitions.length - 2, competitions.length)"
 								:key="comp.name"
 								:class="{ 'active': comp.name === competition.name }"
 								@click="displayCompetition(comp)"
