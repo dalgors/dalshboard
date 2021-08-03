@@ -1,5 +1,19 @@
 [
 	{
+		"id": 31802462,
+		"username": "solo5star",
+		"problemId": 17419,
+		"problemName": "비트가 넘쳐흘러",
+		"tier": 5,
+		"resultCode": "AC",
+		"resultMessage": "100점",
+		"memory": 15120,
+		"time": 8,
+		"language": "Rust 2018",
+		"length": 707,
+		"when": "2021-08-04 02:47:43"
+	},
+	{
 		"id": 31802398,
 		"username": "solo5star",
 		"problemId": 17419,
