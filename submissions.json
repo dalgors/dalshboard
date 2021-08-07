@@ -1,5 +1,33 @@
 [
 	{
+		"id": 31942419,
+		"username": "20183026",
+		"problemId": 11656,
+		"problemName": "접미사 배열",
+		"tier": 7,
+		"resultCode": "AC",
+		"resultMessage": "맞았습니다!!",
+		"memory": 2560,
+		"time": 40,
+		"language": "C++17",
+		"length": 390,
+		"when": "2021-08-07 20:59:39"
+	},
+	{
+		"id": 31942370,
+		"username": "20183026",
+		"problemId": 11656,
+		"problemName": "접미사 배열",
+		"tier": 7,
+		"resultCode": "WA",
+		"resultMessage": "틀렸습니다",
+		"memory": null,
+		"time": null,
+		"language": "C++17",
+		"length": 390,
+		"when": "2021-08-07 20:57:55"
+	},
+	{
 		"id": 31939699,
 		"username": "solo5star",
 		"problemId": 18765,
