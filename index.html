@@ -46,6 +46,9 @@
 
 					<template v-if="loaded">
 						<div class="d-flex justify-content-center">
+							<!--
+								competition 선택할 수 있는 버튼들
+							-->
 							<button
 								class="btn btn-primary mx-1"
 								v-for="comp in competitions.slice(competitions.length - 2, competitions.length)"
@@ -60,10 +63,18 @@
 
 						<div class="d-flex justify-content-center">
 							<table class="table table-sm table-nonfluid table-borderless table-tiled">
+								<!--
+									솔브 현황 테이블에서 상단 문제 Table Head 부분. (문제 번호)
+								-->
 								<thead>
 									<tr>
 										<th scope="col" style="width: 8rem">아이디</th>
-										<th scope="col" style="width: 2rem" v-for="(problemId, index) in competition.problems">
+										<th
+											scope="col"
+											style="width: 2rem; background-color: black"
+											v-for="(problemId, index) in competition.problems"
+											:style="{ backgroundColor: (problemId in problems ? getTierColor(problems[problemId].tier) : '') }"
+										>
 											<a :href="`https://www.acmicpc.net/problem/${problemId}`" target="_blank" :title="problemId">
 												{{ index+1 }}
 											</a>
@@ -71,6 +82,9 @@
 										<th scope="col" style="width: 2rem">∑</th>
 									</tr>
 								</thead>
+								<!--
+									솔브 현황 테이블에서 실제 솔브 현황 (초록색, 빨간색 타일 및 솔브 횟수 표시되는 부분)
+								-->
 								<tbody>
 									<tr v-for="({ username, solvedCount, ...userdata }) in competitionDescription">
 										<td>
@@ -94,6 +108,7 @@
 							</table>
 						</div>
 
+						<!-- competition 이 진행되는 기간 -->
 						<h6>{{ competition.duration.begin }} ~ {{ competition.duration.end }}</h6>
 					</template>
 				</div>
