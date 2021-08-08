@@ -1,19 +1,61 @@
 from bs4 import BeautifulSoup as bs
 import re, time, requests
+from requests.sessions import Request
 
 class CookieExpired(Exception):
     pass
 
 
-class BaekjoonSession:
-    session: requests.Session
+class RequestLimitExceed(Exception):
+    pass
 
-    def __init__(self, cookies = {}):
-        self.session = requests.Session()
-        self.session.cookies.update(cookies)
+
+class BaekjoonSession:
+    requestLimit: int
+    throttlePerRequestAsMilliseconds: int
+
+    __session: requests.Session
+    __requestCount: int
+
+    """
+    백준 전용 세션을 생성합니다.
+
+    :param requestLimit: 프로그램에서 최대로 사용할 수 있는 요청 횟수입니다. 초과할 시 프로그램이 종료됩니다.
+    :param throttlePerRequestAsMilliseconds: 각 요청당 딜레이를 설정합니다. millisecond 단위로 설정합니다.
+    """
+    def __init__(self, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
+        self.requestLimit = requestLimit
+        self.throttlePerRequestAsMilliseconds = throttlePerRequestAsMilliseconds
+        self.__session = requests.Session()
+        self.__session.cookies.update(cookies)
+
+        # 실제 요청 횟수가 기록되는 변수
+        self.__requestCount = 0
+
+    """
+    주어진 URL에 GET 리퀘스트를 보내어 응답을 받아옵니다.
+    내부적으로 requests.Session 객체를 사용하며, 요청 횟수 및 쓰로틀링을 위해
+    wrapping한 함수입니다.
+
+    :param url: 불러올 URL
+    """
+    def get(self, url):
+
+        # 요청 전에, request limit를 넘지 않는지 검사.
+        if self.__requestCount >= self.requestLimit:
+            raise RequestLimitExceed()
+
+        # 첫 번째 요청이 아니면 쓰로틀링 걸기
+        if self.__requestCount != 0 and self.throttlePerRequestAsMilliseconds > 0:
+            print(f'[Collector] Throttle {self.throttlePerRequestAsMilliseconds} ms ...')
+            time.sleep(self.throttlePerRequestAsMilliseconds / 1000)
+
+        result = self.__session.get(url)
+        self.__requestCount += 1
+        return result
 
     def ensureLogin(self, groupId):
-        if "가입 신청" in self.session.get(f"https://www.acmicpc.net/group/{groupId}").text:
+        if "가입 신청" in self.get(f"https://www.acmicpc.net/group/{groupId}").text:
             print('로그인이 되어있지 않습니다. 쿠키 정보를 확인해주세요.')
             raise CookieExpired
 
@@ -65,7 +107,7 @@ class BaekjoonSession:
         if top != None:
             url += f"&top={top}"
         
-        html = self.session.get(url)
+        html = self.get(url)
         soup = bs(html.text, 'html.parser')
         submissionsTags = soup.find("tbody").find_all("tr")
 
