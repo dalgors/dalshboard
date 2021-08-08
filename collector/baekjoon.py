@@ -11,6 +11,7 @@ class RequestLimitExceed(Exception):
 
 
 class BaekjoonSession:
+    groupId: int
     requestLimit: int
     throttlePerRequestAsMilliseconds: int
 
@@ -20,10 +21,12 @@ class BaekjoonSession:
     """
     백준 전용 세션을 생성합니다.
 
+    :param groupId: 백준 그룹의 아이디입니다
     :param requestLimit: 프로그램에서 최대로 사용할 수 있는 요청 횟수입니다. 초과할 시 프로그램이 종료됩니다.
     :param throttlePerRequestAsMilliseconds: 각 요청당 딜레이를 설정합니다. millisecond 단위로 설정합니다.
     """
-    def __init__(self, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
+    def __init__(self, groupId, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
+        self.groupId = groupId
         self.requestLimit = requestLimit
         self.throttlePerRequestAsMilliseconds = throttlePerRequestAsMilliseconds
         self.__session = requests.Session()
@@ -43,6 +46,7 @@ class BaekjoonSession:
 
         # 요청 전에, request limit를 넘지 않는지 검사.
         if self.__requestCount >= self.requestLimit:
+            print(f'[Collector] 요청 횟수를 초과했습니다. 최대 요청 횟수={self.requestLimit}')
             raise RequestLimitExceed()
 
         # 첫 번째 요청이 아니면 쓰로틀링 걸기
@@ -54,9 +58,9 @@ class BaekjoonSession:
         self.__requestCount += 1
         return result
 
-    def ensureLogin(self, groupId):
-        if "가입 신청" in self.get(f"https://www.acmicpc.net/group/{groupId}").text:
-            print('로그인이 되어있지 않습니다. 쿠키 정보를 확인해주세요.')
+    def ensureLogin(self):
+        if "가입 신청" in self.get(f"https://www.acmicpc.net/group/{self.groupId}").text:
+            print('[Collector] 로그인이 되어있지 않습니다. 쿠키 정보를 확인해주세요.')
             raise CookieExpired
 
         print('[Collector] Succesfully checked login state')
@@ -102,8 +106,8 @@ class BaekjoonSession:
 
         return submission
 
-    def fetchSubmissions(self, groupId, top = None): 
-        url = f"https://www.acmicpc.net/status?group_id={groupId}"  
+    def fetchSubmissions(self, top = None): 
+        url = f"https://www.acmicpc.net/status?group_id={self.groupId}"  
         if top != None:
             url += f"&top={top}"
         
@@ -123,7 +127,7 @@ class BaekjoonSession:
 
         return submissions
 
-    def fetchSubmissionsUntil(self, groupId, submissionId, pagenationLimit = 5, throttlePerRequestAsMilliseconds = None):
+    def fetchSubmissionsUntil(self, submissionId, pagenationLimit = 5, throttlePerRequestAsMilliseconds = None):
         submissions = []
         top = None
         page = 1
@@ -132,7 +136,7 @@ class BaekjoonSession:
         # Set pagination limit (unlimited if None)
         while pagenationLimit is None or page <= pagenationLimit:
             print(f'[Collector] Try to fetch page={page}, top={top}')
-            for submission in self.fetchSubmissions(groupId, top):
+            for submission in self.fetchSubmissions(self.groupId, top):
                 if submission['id'] <= submissionId:
                     return submissions
                 
