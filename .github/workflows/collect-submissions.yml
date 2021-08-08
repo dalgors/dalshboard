@@ -40,7 +40,7 @@ jobs:
       run: |
         git config --local user.email "dalgors.deu@gmail.com"
         git config --local user.name "dalgors"
-        git add submissions.json
+        git add .
         if [ -z "$(git status --porcelain)" ]; then echo "Nothing changed"; else git commit -m "[Bot] Update files"; fi
     - name: Push
       uses: ad-m/github-push-action@master
