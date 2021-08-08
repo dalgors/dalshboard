@@ -1,6 +1,7 @@
 import os, json, sys
 from baekjoon import *
 
+
 """
 submissions.json 파일을 최신화합니다.
 
@@ -26,6 +27,40 @@ def updateSubmissions(session: BaekjoonSession):
             print(f"성공적으로 크롤링을 완료하였습니다. {len(recentSubmissions)}건 추가됨")
 
 
+"""
+competitions.json 파일 내의 문제들 중 problems.json 에 없는 문제들을 업데이트합니다.
+
+:param session: 백준에 요청을 보낼 수 있도록 BaekjoonSession 객체를 주어야 합니다.
+"""
+def updateProblems(session: BaekjoonSession):
+    # competitions.json 파일을 읽어 problems.json에 어떤 문제가 없는지 확인합니다
+    competitions = json.load(open("competitions.json", mode="r", encoding="UTF-8"))
+    problemsDiscovered = {}
+
+    with open("problems.json", mode="r+", encoding="UTF-8") as problemsJson:
+        problemsKnown = {int(problemId): problemData for problemId, problemData in json.load(problemsJson).items()}
+
+        try:
+            # 가장 최신의 competition 부터 처리하기 위해 reverse
+            for competition in reversed(competitions):
+                for problem in competition['problems']:
+                    # 이미 알고 있는 문제는 넘어가도 OK
+                    if problem in problemsKnown:
+                        continue
+
+                    # 새로 fetch 한 문제!
+                    problemsDiscovered[problem] = session.fetchProblem(problem)
+
+        except RequestLimitExceed:
+            # 요청 횟수가 너무 많았으니 다음 번에 또 요청
+            pass
+
+        # 새롭게 fetch 한 문제가 있다면 write
+        if len(problemsDiscovered.items()) > 0:
+            problemsKnown.update(problemsDiscovered)
+            problemsJson.seek(0)
+            problemsJson.write(json.dumps(dict(sorted(problemsKnown.items())), indent='\t', ensure_ascii=False))
+            problemsJson.truncate()
 
 
 try:
@@ -46,6 +81,9 @@ try:
     
     # submissions.json 최신화
     updateSubmissions(session)
+
+    # problems.json 최신화
+    updateProblems(session)
 
 except CookieExpired:
     sys.exit(1) # 로그인 실패로 인한 종료는 정상 종료가 아님

@@ -152,3 +152,13 @@ class BaekjoonSession:
             # 요청 횟수 초과 시 루프 탈출 & submissions 반환
             except RequestLimitExceed:
                 return submissions
+
+    def fetchProblem(self, problemId):
+        html = self.get(f'https://www.acmicpc.net/problem/{problemId}')
+        soup = bs(html.text, 'html.parser')
+
+        return {
+            'name': soup.find(id='problem_title').text,
+            'tier': int(re.search('tier/(\d+)\.svg', soup.find(class_='solvedac-tier')['src'])[1]),
+            'tags': [e.find('a').text for e in soup.find(id='problem_tags').find_all('li')],
+        }
