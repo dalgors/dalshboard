@@ -25,7 +25,7 @@ class BaekjoonSession:
     :param requestLimit: 프로그램에서 최대로 사용할 수 있는 요청 횟수입니다. 초과할 시 프로그램이 종료됩니다.
     :param throttlePerRequestAsMilliseconds: 각 요청당 딜레이를 설정합니다. millisecond 단위로 설정합니다.
     """
-    def __init__(self, groupId: int, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
+    def __init__(self, groupId: int, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 100):
         self.groupId = groupId
         self.requestLimit = requestLimit
         self.throttlePerRequestAsMilliseconds = throttlePerRequestAsMilliseconds
