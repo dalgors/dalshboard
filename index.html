@@ -38,6 +38,9 @@
 	<body class="container">
 		<div id="app">
 			<div style="margin-top: 8rem"></div>
+			<!--
+				그룹원 솔브 현황 대시보드
+			-->
 			<div class="card">
 				<div class="card-body text-center">
 					<h1 class="card-title display-6">Dalgors :: Dashboard</h1>
@@ -115,10 +118,61 @@
 			</div>
 
 			<div style="margin-top: 5rem"></div>
+
+			<!--
+				competition 문제 목록
+			-->
+			<div class="card">
+				<div class="card-body text-center">
+					<h1 class="card-title display-6">문제 목록</h1>
+					<p>{{ competition.name }} 연습 문제 목록입니다.</p>
+					<div style="margin-top: 2rem"></div>
+
+					<div class="d-flex justify-content-center">
+						<table class="table table-sm table-nonfluid table-borderless" v-if="loaded">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th scope="col">문제 번호</th>
+									<th scope="col">티어</th>
+									<th scope="col">문제 이름</th>
+									<th scope="col">태그</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(problem, index) in competition.problems">
+									<td>{{ index+1 }}</td>
+									<td>
+										<a :href="`https://www.acmicpc.net/problem/${problem}`" target="_blank">{{ problem }}</a>
+									</td>
+									<td>
+										<img
+											:src="`https://static.solved.ac/tier_small/${problems[problem]?.tier ?? 0}.svg`"
+											style="width: 1.2rem; height: 1.2rem"
+										/>
+									</td>
+									<td style="text-align: left">
+										<a :href="`https://www.acmicpc.net/problem/${problem}`" target="_blank"
+											>{{ problems[problem]?.name }}
+										</a>
+									</td>
+									<td style="text-align: left">{{ (problems[problem]?.tags ?? []).join(' · ') }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div style="margin-top: 5rem"></div>
+
+			<!--
+				그룹원 제출 현황
+			-->
 			<div class="card">
 				<div class="card-body text-center">
 					<h1 class="card-title display-6">제출 현황</h1>
-					<p>주기적으로 갱신됩니다.</p>
+					<p>약 20분 간격으로 갱신됩니다.</p>
 					<div style="margin-top: 2rem"></div>
 
 					<div class="d-flex justify-content-center">
