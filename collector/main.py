@@ -17,7 +17,7 @@ def updateSubmissions(session: BaekjoonSession):
         print("submissions.json 파일 상태가 최신입니다.")
         return
 
-    with open("submissions.json",mode="r+",encoding="UTF-8") as jsonfile:
+    with open("submissions.json", mode="r+", encoding="UTF-8") as jsonfile:
         jsonfile.seek(0)
         jsonfile.write(json.dumps(freshSubmissions + recentSubmissions,indent='\t',ensure_ascii=False))
         jsonfile.truncate()
@@ -35,17 +35,14 @@ try:
         "bojautologin": os.getenv("BOJ_AUTO_LOGIN"),
         "OnlineJudge": os.getenv("ONLINE_JUDGE")
     }
-    session = BaekjoonSession(cookies)
+    session = BaekjoonSession(groupId, cookies)
 
     # 로그인 상태를 확인
     # 로그인이 안되어 있을 시 CookieExpired 에러를 발생시켜 프로그램 중단
-    session.ensureLogin(groupId)
+    session.ensureLogin()
     
     # submissions.json 최신화
-    updateSubmissions()
+    updateSubmissions(session)
 
 except CookieExpired:
     sys.exit(1) # 로그인 실패로 인한 종료는 정상 종료가 아님
-
-except RequestLimitExceed:
-    sys.exit(0) # 이번 실행에서 요청 횟수를 초과하더라도 다음 번에 더 요청하면 됨

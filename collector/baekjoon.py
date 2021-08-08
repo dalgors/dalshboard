@@ -25,7 +25,7 @@ class BaekjoonSession:
     :param requestLimit: 프로그램에서 최대로 사용할 수 있는 요청 횟수입니다. 초과할 시 프로그램이 종료됩니다.
     :param throttlePerRequestAsMilliseconds: 각 요청당 딜레이를 설정합니다. millisecond 단위로 설정합니다.
     """
-    def __init__(self, groupId, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
+    def __init__(self, groupId: int, cookies = {}, requestLimit = 5, throttlePerRequestAsMilliseconds = 0):
         self.groupId = groupId
         self.requestLimit = requestLimit
         self.throttlePerRequestAsMilliseconds = throttlePerRequestAsMilliseconds
@@ -127,26 +127,26 @@ class BaekjoonSession:
 
         return submissions
 
-    def fetchSubmissionsUntil(self, submissionId, pagenationLimit = 5, throttlePerRequestAsMilliseconds = None):
+    def fetchSubmissionsUntil(self, submissionId):
         submissions = []
         top = None
         page = 1
         print(f'[Collector] Fetch until submissionId={submissionId}')
 
-        # Set pagination limit (unlimited if None)
-        while pagenationLimit is None or page <= pagenationLimit:
+        while True:
             print(f'[Collector] Try to fetch page={page}, top={top}')
-            for submission in self.fetchSubmissions(self.groupId, top):
-                if submission['id'] <= submissionId:
-                    return submissions
-                
-                submissions.append(submission)
 
-            # throttle request if enabled
-            if throttlePerRequestAsMilliseconds is not None:
-                print(f'[Collector] Throttle {throttlePerRequestAsMilliseconds} ms ...')
-                time.sleep(throttlePerRequestAsMilliseconds / 1000)
-            
-            # do not include 'top' submission
-            top = submissions[-1]['id'] - 1
-            page += 1
+            try:
+                for submission in self.fetchSubmissions(top):
+                    if submission['id'] <= submissionId:
+                        return submissions
+                    
+                    submissions.append(submission)
+                
+                # do not include 'top' submission
+                top = submissions[-1]['id'] - 1
+                page += 1
+
+            # 요청 횟수 초과 시 루프 탈출 & submissions 반환
+            except RequestLimitExceed:
+                return submissions
