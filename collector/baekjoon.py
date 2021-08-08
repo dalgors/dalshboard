@@ -43,7 +43,6 @@ class BaekjoonSession:
     :param url: 불러올 URL
     """
     def get(self, url):
-
         # 요청 전에, request limit를 넘지 않는지 검사.
         if self.__requestCount >= self.requestLimit:
             print(f'[Collector] 요청 횟수를 초과했습니다. 최대 요청 횟수={self.requestLimit}')
@@ -56,6 +55,9 @@ class BaekjoonSession:
 
         result = self.__session.get(url)
         self.__requestCount += 1
+
+        print(f'[Collector] "GET {url}" {result.status_code} request_remain={self.requestLimit - self.__requestCount}')
+
         return result
 
     def ensureLogin(self):
