@@ -7,22 +7,25 @@ submissions.json 파일을 최신화합니다.
 :param session: 백준에 요청을 보낼 수 있도록 BaekjoonSession 객체를 주어야 합니다.
 """
 def updateSubmissions(session: BaekjoonSession):
-    # 최근 제출들을 가져옵니다.
-    recentSubmissions = json.load(open("submissions.json", mode="r", encoding="UTF-8"))
-    recentId = recentSubmissions[0]["id"]
+    with open("submissions.json", mode="r+", encoding="UTF-8") as submissionsJson:
+        # 최근 제출들을 가져옵니다.
+        submissions = json.load(submissionsJson)
 
-    freshSubmissions = session.fetchSubmissionsUntil(recentId)
+        top = submissions[0]["id"]
+        recentSubmissions = session.fetchSubmissionsUntil(top)
 
-    if len(freshSubmissions) == 0:
-        print("submissions.json 파일 상태가 최신입니다.")
-        return
+        # submissions.json 파일의 상태가 최신이면 아무것도 하지 않음
+        if len(recentSubmissions) == 0:
+            print("submissions.json 파일 상태가 최신입니다.")
+        
+        # 써야 할 데이터가 있으면 쓰기
+        else:
+            submissionsJson.seek(0)
+            submissionsJson.write(json.dumps(recentSubmissions + submissions, indent='\t', ensure_ascii=False))
+            submissionsJson.truncate()
+            print(f"성공적으로 크롤링을 완료하였습니다. {len(recentSubmissions)}건 추가됨")
 
-    with open("submissions.json", mode="r+", encoding="UTF-8") as jsonfile:
-        jsonfile.seek(0)
-        jsonfile.write(json.dumps(freshSubmissions + recentSubmissions,indent='\t',ensure_ascii=False))
-        jsonfile.truncate()
 
-    print(f"성공적으로 크롤링을 완료하였습니다. {len(freshSubmissions)}건 추가됨")
 
 
 try:
