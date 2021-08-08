@@ -56,11 +56,12 @@ def updateProblems(session: BaekjoonSession):
             pass
 
         # 새롭게 fetch 한 문제가 있다면 write
-        if len(problemsDiscovered.items()) > 0:
+        if len(problemsDiscovered) > 0:
             problemsKnown.update(problemsDiscovered)
             problemsJson.seek(0)
             problemsJson.write(json.dumps(dict(sorted(problemsKnown.items())), indent='\t', ensure_ascii=False))
             problemsJson.truncate()
+            print(f'문제 정보들을 {len(problemsDiscovered)}건 추가하였습니다.')
 
 
 try:
