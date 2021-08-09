@@ -39,7 +39,8 @@ const app = new Vue({
 			// load all json files
 			[this.competitions, this.submissions, this.problems] = await Promise.all(
 				["competitions.json", "submissions.json", "problems.json"].map(
-					async filename => await (await fetch(filename)).json()
+					async filename =>
+						await (await fetch(`https://raw.githubusercontent.com/dalgors/baekjoon/main/${filename}`)).json()
 				)
 			);
 
