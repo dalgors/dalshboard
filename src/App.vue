@@ -48,8 +48,7 @@ import Section from './components/Section.vue';
 import SolvedStateTable from './components/SolvedStateTable.vue';
 import ProblemList from './components/ProblemList.vue';
 import SubmissionList from './components/SubmissionList.vue';
-import { reactive, ref } from '@vue/reactivity';
-import { onMounted } from '@vue/runtime-core';
+import { ref } from '@vue/reactivity';
 import store from './store/store';
 
 const [loaded, competitions, submissions, competitionActive] = [ref(false), ref([]), ref([]), ref({})];
