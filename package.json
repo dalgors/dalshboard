@@ -1,0 +1,30 @@
+{
+	"name": "dalshboard",
+	"version": "1.0.0",
+	"author": "dalgors",
+	"description": "Baekjoon dashboard system for dalgors (tailor-made)",
+	"license": "ISC",
+	"main": "index.js",
+	"homepage": "https://github.com/dalgors/dalshboard#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dalgors/dalshboard.git"
+	},
+	"bugs": {
+		"url": "https://github.com/dalgors/dalshboard/issues"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"vue": "^3.0.5",
+		"vuex": "^4.0.2"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^1.3.0",
+		"@vue/compiler-sfc": "^3.0.5",
+		"vite": "^2.4.4"
+	}
+}

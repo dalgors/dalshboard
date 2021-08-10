@@ -2,5 +2,10 @@
 	"tabWidth": 2,
 	"useTabs": true,
 	"printWidth": 120,
-	"arrowParens": "avoid"
+	"arrowParens": "avoid",
+	"bracketSpacing": true,
+	"quoteProps": "as-needed",
+	"singleQuote": true,
+	"semi": true,
+	"trailingComma": "all"
 }
