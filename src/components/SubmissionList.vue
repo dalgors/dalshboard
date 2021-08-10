@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="submission in submissions" :key="submission.id">
+			<tr v-for="submission in submissions.sort((a, b) => b.id - a.id)" :key="submission.id">
 				<td>{{ submission.id }}</td>
 				<td>
 					<a
