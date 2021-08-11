@@ -2,7 +2,7 @@
 	그룹원 제출 현황
 -->
 <template>
-	<table class="table table-sm table-nonfluid table-borderless text-center">
+	<table class="table table-sm table-nonfluid table-borderless">
 		<thead>
 			<tr>
 				<th scope="col">제출 번호</th>
@@ -27,6 +27,8 @@
 					>
 				</td>
 				<td>
+					<SolvedacTier :tier="submission.tier" />
+					<span style="margin-left: 0.25rem" />
 					<a
 						:href="`https://www.acmicpc.net/problem/${submission.problemId}`"
 						target="_blank"
@@ -46,6 +48,7 @@
 </template>
 
 <script setup>
+import SolvedacTier from './SolvedacTier.vue';
 import { defineProps } from 'vue';
 import moment from 'moment/min/moment-with-locales';
 

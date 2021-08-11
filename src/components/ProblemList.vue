@@ -19,10 +19,7 @@
 					<a :href="`https://www.acmicpc.net/problem/${problemId}`" target="_blank">{{ problemId }}</a>
 				</td>
 				<td>
-					<img
-						:src="`https://static.solved.ac/tier_small/${problemDescriptions[problemId]?.tier ?? 0}.svg`"
-						style="width: 1.2rem; height: 1.2rem"
-					/>
+					<SolvedacTier :tier="problemDescriptions[problemId]?.tier ?? 0" />
 				</td>
 				<td style="text-align: left">
 					<a :href="`https://www.acmicpc.net/problem/${problemId}`" target="_blank"
@@ -36,6 +33,7 @@
 </template>
 
 <script setup>
+import SolvedacTier from './SolvedacTier.vue';
 import store from '../store/store';
 
 defineProps({
