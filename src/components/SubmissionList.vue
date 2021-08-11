@@ -39,7 +39,7 @@
 				<td>{{ submission.time }} <span v-if="submission.time !== null">ms</span></td>
 				<td>{{ submission.language }}</td>
 				<td>{{ submission.length }} B</td>
-				<td>{{ submission.when }}</td>
+				<td>{{ moment(submission.when).fromNow() }}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { defineProps } from 'vue';
+import moment from 'moment/min/moment-with-locales';
 
 defineProps({
 	submissions: Array,

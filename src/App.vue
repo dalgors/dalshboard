@@ -22,7 +22,10 @@
 			<SolvedStateTable :submissions="submissions" :competition="competitionActive" />
 
 			<!-- competition 이 진행되는 기간 -->
-			<h6>{{ competitionActive.duration.begin }} ~ {{ competitionActive.duration.end }}</h6>
+			<h6>
+				{{ moment(competitionActive.duration.begin).format('LLL') }} ~
+				{{ moment(competitionActive.duration.end).format('LLL') }}
+			</h6>
 		</Section>
 
 		<div style="margin-top: 5rem"></div>
@@ -49,6 +52,7 @@ import SolvedStateTable from './components/SolvedStateTable.vue';
 import ProblemList from './components/ProblemList.vue';
 import SubmissionList from './components/SubmissionList.vue';
 import { ref } from '@vue/reactivity';
+import moment from 'moment/min/moment-with-locales';
 import store from './store/store';
 
 const [loaded, competitions, submissions, competitionActive] = [ref(false), ref([]), ref([]), ref({})];
