@@ -50,11 +50,15 @@
 <script setup>
 import store from '../store/store';
 import { getTierColor } from '../helper/solvedac';
+import { ref, toRefs } from '@vue/reactivity';
+import { computed, watch } from '@vue/runtime-core';
 
-const { competition, submissions } = defineProps({
+const props = defineProps({
 	competition: Object,
 	submissions: Array,
 });
+
+const { competition, submissions } = toRefs(props);
 
 const problems = store.state.problems;
 
@@ -69,30 +73,34 @@ const problems = store.state.problems;
 //   },
 //   ...
 // ]
-const solvedStates = Object.entries(
-	submissions.reverse().reduce((users, submission) => {
-		// skip if problem id is not in problems (filtering)
-		if (!competition.problems.includes(submission.problemId)) return users;
+const solvedStates = computed({
+	get: () =>
+		Object.entries(
+			[...submissions.value].reverse().reduce((users, submission) => {
+				// skip if problem id is not in problems (filtering)
+				if (!competition.value.problems.includes(submission.problemId)) return users;
 
-		const user =
-			users[submission.username] ?? (users[submission.username] = { username: submission.username, solvedCount: 0 });
+				const user =
+					users[submission.username] ??
+					(users[submission.username] = { username: submission.username, solvedCount: 0 });
 
-		const problem = user[submission.problemId] ?? (user[submission.problemId] = { solved: false, trial: 0 });
+				const problem = user[submission.problemId] ?? (user[submission.problemId] = { solved: false, trial: 0 });
 
-		// trial will increase only when problem was not solved
-		if (problem.solved === false) {
-			if (submission.resultCode === 'AC') {
-				problem.solved = true;
-				problem.trial += 1;
-				user.solvedCount += 1;
-			} else {
-				problem.trial += 1;
-			}
-		}
+				// trial will increase only when problem was not solved
+				if (problem.solved === false) {
+					if (submission.resultCode === 'AC') {
+						problem.solved = true;
+						problem.trial += 1;
+						user.solvedCount += 1;
+					} else {
+						problem.trial += 1;
+					}
+				}
 
-		return users;
-	}, {}),
-)
-	.map(([, userdata]) => userdata)
-	.sort((a, b) => b.solvedCount - a.solvedCount);
+				return users;
+			}, {}),
+		)
+			.map(([, userdata]) => userdata)
+			.sort((a, b) => b.solvedCount - a.solvedCount),
+});
 </script>

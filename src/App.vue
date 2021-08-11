@@ -12,7 +12,7 @@
 					v-for="competition in competitions.slice(competitions.length - 2, competitions.length)"
 					:key="competition.name"
 					:class="{ active: competition.name === competitionActive.name }"
-					@click="competitionActive.value = competition"
+					@click="competitionActive = competition"
 				>
 					{{ competition.name }}
 				</button>
