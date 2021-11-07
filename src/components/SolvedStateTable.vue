@@ -80,6 +80,13 @@ const solvedStates = computed({
 				// skip if problem id is not in problems (filtering)
 				if (!competition.value.problems.includes(submission.problemId)) return users;
 
+				const begin = new Date(competition.value.duration.begin);
+				const end = new Date(competition.value.duration.end);
+				const when = new Date(submission.when);
+
+				// skip if the submission out of competition duration
+				if (when < begin || end < when) return users;
+
 				const user =
 					users[submission.username] ??
 					(users[submission.username] = { username: submission.username, solvedCount: 0 });
