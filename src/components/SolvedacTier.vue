@@ -10,7 +10,7 @@ import { defineProps } from 'vue';
 
 defineProps({
 	variant: String,
-	tier: String,
+	tier: Number,
 	width: String,
 	height: String,
 });

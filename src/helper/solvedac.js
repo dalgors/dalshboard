@@ -72,3 +72,12 @@ export function getTierColor(tier) {
 			return 'rgb(255, 48, 113)';
 	}
 }
+
+export function getTierImage(tier, variant = 'small') {
+	return `https://static.solved.ac/tier_${variant}/${tier ?? 0}.svg`;
+}
+
+export function getTierRaiting(tier) {
+	return tier;
+	// return 1 + tier * 0.1;
+}

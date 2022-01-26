@@ -1,26 +1,68 @@
 <template>
-	<div class="container-xxl" v-if="loaded">
-		<div style="margin-top: 8rem"></div>
+	<div class="container" v-if="loaded">
+		<Section title="Dalgors :: Dashboard" description="Dalgors :: 동의대 알고리즘 동아리 연습 현황 대시보드입니다.">
+			<!--
+				competition 선택할 수 있는 버튼들
+			-->
+			<div class="d-flex justify-content-center">
+				<button
+					class="btn btn-primary mx-1"
+					v-for="competition in competitions.slice(competitions.length - 8, competitions.length)"
+					:key="competition.name"
+					:class="{ active: competition.name === competitionActive.name }"
+					@click="competitionActive = competition"
+				>
+					{{ competition.name }}
+				</button>
+			</div>
+			<div style="margin-top: 1.5rem"></div>
 
-		<CompetitionSummary v-model:competition="activeCompetition" />
+			<!--
+				competition 솔브 현황 요약
+			-->
+			<SolvedStateTable :submissions="submissions" :competition="competitionActive" />
 
-		<ProblemList :problems="activeCompetition.problems" :name="activeCompetition.name" />
+			<!--
+				competition 이 진행되는 기간
+			-->
+			<h6>
+				{{ moment(competitionActive.duration.begin).format('LLL') }} ~
+				{{ moment(competitionActive.duration.end).format('LLL') }}
+			</h6>
+		</Section>
 
-		<SubmissionList />
+		<Section title="문제 목록" :description="`${competitionActive.name} 연습 문제 목록입니다.`">
+			<ProblemList :problems="competitionActive.problems" />
+		</Section>
+
+		<Section title="제출 현황" description="약 20분 간격으로 갱신됩니다.">
+			<SubmissionList :submissions="submissions" />
+		</Section>
 	</div>
 </template>
+
+<style scoped>
+.container > *:first-child {
+	margin-top: 8rem;
+}
+
+.container > * + * {
+	margin-top: 5rem;
+}
+</style>
 
 <script setup>
 // This starter template is using Vue 3 experimental <script setup> SFCs
 // Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
-import CompetitionSummary from './sections/CompetitionSummary.vue';
-import ProblemList from './sections/ProblemList.vue';
-import SubmissionList from './sections/SubmissionList.vue';
-import moment from 'moment/min/moment-with-locales';
+import Section from './components/Section.vue';
+import SolvedStateTable from './components/sections/CompetitionSummary.vue';
+import ProblemList from './components/ProblemList.vue';
+import SubmissionList from './components/sections/SubmissionList.vue';
 import { ref } from '@vue/reactivity';
+import moment from 'moment/min/moment-with-locales';
 import store from './store/store';
 
-const [loaded, activeCompetition] = [ref(false), ref({})];
+const [loaded, competitions, submissions, competitionActive] = [ref(false), ref([]), ref([]), ref({})];
 
 // Load json files from https://github.com/dalgors/baekjoon
 (async () => {
@@ -40,9 +82,9 @@ const [loaded, activeCompetition] = [ref(false), ref({})];
 		competition.duration.end = new Date(competition.duration.end);
 	});
 
-	[store.state.competitions, store.state.submissions, store.state.problems] = [_competitions, _submissions, _problems];
+	[competitions.value, submissions.value, store.state.problems] = [_competitions, _submissions, _problems];
 
-	activeCompetition.value = store.state.competitions[store.state.competitions.length - 1];
+	competitionActive.value = competitions.value[competitions.value.length - 1];
 
 	loaded.value = true;
 })();
