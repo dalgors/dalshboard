@@ -96,6 +96,14 @@
 	</Section>
 </template>
 
+<style scoped>
+th:first-child,
+td:first-child {
+	position: sticky;
+	left: 0;
+}
+</style>
+
 <script setup>
 import Section from './Section.vue';
 import CompetitionSelect from '../components/CompetitionSelect.vue';
